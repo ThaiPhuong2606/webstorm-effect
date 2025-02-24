@@ -1,0 +1,25 @@
+<div id="product-card-container">
+  <div class="product-card">
+    <div class="product-image">
+      <img [src]="image" alt="Product image" >
+    </div>
+    <div class="product-info">
+      <p class="product-name">{{name}}</p>
+      <p class="product-breed">{{breed}}</p>
+
+      <div class="price-info">
+        @if (breed == "Anh") {
+          <p>$ <del>{{price}}</del></p>
+        }
+        @let salePrice = breed == "Anh" ? price * 0.5 : price;
+        <p class="product-price">$ {{salePrice}}</p>
+      </div>
+    </div>z
+
+    <div style="display: flex; gap: 10px">
+      <button (click)="addToCart()">Add to cart</button>
+      <button (click)="addToCart()">View detail</button>
+    </div>
+
+  </div>
+</div>

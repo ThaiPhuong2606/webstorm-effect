@@ -1,0 +1,27 @@
+<!--<div id="list-products">-->
+<!--  @for (cat of cats; track $index) {-->
+<!--    <app-product-card-->
+<!--      [cat] = "cat"-->
+<!--    ></app-product-card>-->
+<!--  }-->
+<!--</div>-->
+
+@defer (on timer(500ms)){
+  <div>
+    @for (book of (book$ | async) ; track $index) {
+      <h2>{{book.title}}</h2>
+      <img [src]="book.cover">
+    }
+  </div>
+} @placeholder () {
+  <div id = "loading">
+    <mat-spinner></mat-spinner>
+  </div>
+}
+
+
+
+
+
+
+
