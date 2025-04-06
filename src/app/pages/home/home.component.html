@@ -1,27 +1,23 @@
-<!--<div id="list-products">-->
-<!--  @for (cat of cats; track $index) {-->
-<!--    <app-product-card-->
-<!--      [cat] = "cat"-->
-<!--    ></app-product-card>-->
-<!--  }-->
-<!--</div>-->
-
-@defer (on timer(500ms)){
-  <div>
-    @for (book of (book$ | async) ; track $index) {
-      <h2>{{book.title}}</h2>
-      <img [src]="book.cover">
+<div id="container">
+<form [formGroup]="loginForm" (ngSubmit)="printEmail()">
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input [formControl]="emailControl" matInput placeholder="Input email here...">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    @if(emailControl.invalid){
+      <mat-error>{{ errorEmail() }}</mat-error>
     }
-  </div>
-} @placeholder () {
-  <div id = "loading">
-    <mat-spinner></mat-spinner>
-  </div>
-}
-
-
-
-
-
-
-
+  </mat-form-field>
+  </form>
+  <form>
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input type="password" [formControl]="passwordControl" matInput placeholder="Input password here...">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    @if(passwordControl.invalid){
+      <mat-error>{{ errorPassword() }}</mat-error>
+    }
+  </mat-form-field>
+</form>
+</div>
+<button type="submit" mat-flat-button [disabled]="emailControl.invalid || passwordControl.invalid" (click)="printEmail()">Print data</button>
